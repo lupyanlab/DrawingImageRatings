@@ -1,0 +1,10 @@
+prod/
+data/
+trials/
+demographics/
+node_modules/
+descriptions/
+.DS_Store
+launch.json
+generate_trials.log
+categoriesCount*
