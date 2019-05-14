@@ -11,7 +11,7 @@ $(document).ready(function() {
   // DEFINE workerId, hitId, assignmentId HERE
   //////////////////////////////////////////
   let subjCode = $.urlParam("workerId") || "unknown";
-  let numCategories = $.urlParam("numCategories") || 4;
+  let numCategories = $.urlParam("numCategories") || 1;
   let reset = $.urlParam("newSet") || "false";
   let workerId = "workerId";
   let assignmentId = "assignmentId";
