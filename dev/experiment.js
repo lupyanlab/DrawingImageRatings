@@ -124,7 +124,12 @@ export function runExperiment(
           <h4 style="text-align:center;margin-top:0;width:50vw;">Trial ${trial_number} of ${num_trials}</h4>
           <div style="width:100%;">
               <div style="width: 100%;;text-align:center;margin: auto;padding: 0em;">
-                  <img src="${image}" alt="${image}" height="200px" align="middle" style="max-width:400px;width=50%;" />
+                  <img src="${"http://" +
+                    document.domain +
+                    ":" +
+                    PORT +
+                    "/" +
+                    image}" alt="${image}" height="200px" align="middle" style="max-width:400px;width=50%;" />
               </div>
           </div>
         `,
