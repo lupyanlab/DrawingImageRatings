@@ -11,7 +11,7 @@ $(document).ready(function() {
   // DEFINE workerId, hitId, assignmentId HERE
   //////////////////////////////////////////
   let subjCode = $.urlParam("workerId") || "unknown";
-  let numTrials = $.urlParam("numTrials") || 15;
+  let numCategories = $.urlParam("numCategories") || 4;
   let reset = $.urlParam("newSet") || "false";
   let workerId = "workerId";
   let assignmentId = "assignmentId";
@@ -27,7 +27,7 @@ $(document).ready(function() {
     url: "http://" + document.domain + ":" + PORT + "/trials",
     type: "POST",
     contentType: "application/json",
-    data: JSON.stringify({ subjCode, numTrials, reset, dev: false }),
+    data: JSON.stringify({ subjCode, numCategories, reset, dev: false }),
     success: function(data) {
       console.log(data);
 

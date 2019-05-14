@@ -217,7 +217,7 @@ app.post("/trials", function(req, res) {
   console.log("trials post request received");
 
   let subjCode = req.body.subjCode;
-  let numTrials = req.body.numTrials;
+  let numCategories = req.body.numCategories;
   let numPics = req.body.numPics || 17;
   let reset = req.body.reset;
   const dev = req.body.dev == true;
@@ -299,7 +299,7 @@ app.post("/trials", function(req, res) {
     let subjCategories = [];
     for (let count of counts) {
       for (let cat of countLists[count]) {
-        if (subjCategories.length < numTrials) {
+        if (subjCategories.length < numCategories) {
           subjCategories.push(cat);
           categoriesCount[env][cat] =
             Number(categoriesCount[env][cat]) + 1 + "";

@@ -1,5 +1,11 @@
 import demographicsQuestions from "./demographics.js";
 
+function qNQuestionComparator(a, b) {
+  const n1 = Number(a[0].slice(1));
+  const n2 = Number(b[0].slice(1));
+  return n1 - n2;
+}
+
 // Function Call to Run the experiment
 export function runExperiment(
   trials,
@@ -89,106 +95,76 @@ export function runExperiment(
         rt: -1
       };
 
-      let stimulus = /*html*/ `
-        <h4 style="text-align:center;margin-top:0;">Trial ${trial_number} of ${num_trials}</h4>
-        <h1>How typical is this ${categoryNamesMap[category]}?</div>
-        <div style="width:100%;">
-            <div style="width: 100%;;text-align:center;margin: auto;padding: 0em;">
-                <img src="${image}" alt="${image}" height="200px" align="middle" style="max-width:400px;width=50%;" />
-            </div>
-        </div>
-    `;
-
-      const choices = ["1 (Very typical)", "2", "3", "4", "5 (Very atypical)"];
-
-      let circles = choices.map(choice => {
-        return /*html*/ `
-            <div class="choice">
-                <div class="choice-circle empty-circle"></div>
-                <div class="text">${choice}</div>
-            </div>
-        `;
-      });
-
-      let prompt = /*html*/ `
-            <div class="bar">
-                ${circles.join("")}
-            </div>
-        `;
-
-      // Picture Trial
-      let pictureTrial = {
-        type: "html-keyboard-response",
-        choices: choices.map((choice, index) => {
-          return `${index + 1}`;
-        }),
-
-        stimulus: stimulus,
-
-        prompt: function() {
-          return prompt;
+      const questions = [
+        {
+          key: "how well drawn",
+          prompt: `How well drawn is this ${categoryNamesMap[category]}?`,
+          labels: [
+            "1 (Very badly drawn)",
+            "2",
+            "3",
+            "4",
+            "5 (Very well drawn)"
+          ],
+          required: true
         },
+        {
+          key: "how typical",
+          prompt: `How typical is this ${categoryNamesMap[category]} of ${
+            categoryNamesMap[category]
+          }s in general?`,
+          labels: ["1 (Very typical)", "2", "3", "4", "5 (Very atypical)"],
+          required: true
+        }
+      ];
+
+      const drawingQuestionsTrial = {
+        type: "survey-likert",
+        preamble: /*html*/ `        
+          <h4 style="text-align:center;margin-top:0;width:50vw;">Trial ${trial_number} of ${num_trials}</h4>
+          <div style="width:100%;">
+              <div style="width: 100%;;text-align:center;margin: auto;padding: 0em;">
+                  <img src="${image}" alt="${image}" height="200px" align="middle" style="max-width:400px;width=50%;" />
+              </div>
+          </div>
+        `,
+        questions,
+        button_label: "Submit",
 
         on_finish: function(data) {
-          response.response = String.fromCharCode(data.key_press);
-          response.choice = choices[Number(response.response) - 1];
-          response.rt = data.rt;
-          response.expTimer = data.time_elapsed / 1000;
+          const responses = Object.entries(JSON.parse(data.responses))
+            .sort(qNQuestionComparator)
+            .reduce(
+              (acc, [QN, response], i) => ({
+                ...acc,
+                [questions[i].key]: response + 1 // choices start with 1 instead of 0
+              }),
+              {
+                subjCode,
+                category,
+                image: image.split("/").slice(-1)[0],
+                rt: data.rt,
+                expTimer: data.time_elapsed / 1000
+              }
+            );
+          console.log(responses);
 
           // POST response data to server
           $.ajax({
             url: "http://" + document.domain + ":" + PORT + "/data",
             type: "POST",
             contentType: "application/json",
-            data: JSON.stringify(response),
+            data: JSON.stringify(responses),
             success: function() {
-              console.log(response);
+              console.log(responses);
             }
           });
-        }
-      };
-      timeline.push(pictureTrial);
-
-      // let subject view their choice
-      let breakTrial = {
-        type: "html-keyboard-response",
-        trial_duration: 500,
-        response_ends_trial: false,
-
-        stimulus: stimulus,
-
-        prompt: function() {
-          const circles = choices.map((choice, index) => {
-            if (choice == response.choice) {
-              return /*html*/ `
-                        <div class="choice">
-                          <div class="choice-circle filled-circle"></div>
-                          <div class="text">${choice}</div>
-                        </div>
-                      `;
-            }
-            return /*html*/ `
-                  <div class="choice">
-                    <div class="choice-circle empty-circle"></div>
-                    <div class="text">${choice}</div>
-                  </div>
-                  `;
-          });
-
-          const prompt = /*html*/ `
-                  <div class="bar">
-                      ${circles.join("")}
-                  </div>
-              `;
-          return prompt;
-        },
-
-        on_finish: function() {
           jsPsych.setProgressBar((progress_number - 1) / num_trials);
           progress_number++;
         }
       };
-      timeline.push(breakTrial);
+
+      timeline.push(drawingQuestionsTrial);
       trial_number++;
     });
   });

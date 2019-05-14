@@ -13,7 +13,7 @@ $(document).ready(function() {
     let subjCode = $("#subjCode")
       .val()
       .slice();
-    let numTrials = $("#numTrials").val();
+    let numCategories = $("#numCategories").val();
     let reset = $("#reset").val();
     let workerId = "null";
     let assignmentId = "null";
@@ -30,7 +30,7 @@ $(document).ready(function() {
       url: "http://" + document.domain + ":" + PORT + "/trials",
       type: "POST",
       contentType: "application/json",
-      data: JSON.stringify({ subjCode, numTrials, reset, dev: true }),
+      data: JSON.stringify({ subjCode, numCategories, reset, dev: true }),
       success: function(data) {
         console.log(data);
 
