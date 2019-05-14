@@ -13,7 +13,7 @@ pm2 start index.js --name RateTheseDrawings
 
 ## Development
 
-If you are working on your local machinese, go to http://localhost:7101.
+If you are working on your local machinese, go to http://localhost:3306.
 
 If you are working on Sapir, go to http://sapir.psych.wisc.edu/mturk/RateTheseDrawings/dev.
 
