@@ -159,7 +159,7 @@ export function runExperiment(
               console.log(responses);
             }
           });
-          jsPsych.setProgressBar((progress_number - 1) / num_trials);
+          jsPsych.setProgressBar(progress_number / num_trials);
           progress_number++;
         }
       };

@@ -39,6 +39,7 @@ app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname + "/dev/index.html"));
 });
 app.use(express.static(__dirname + "/dev"));
+app.use("/stimuli", express.static(__dirname + "/stimuli"));
 
 app.listen(app.get("port"), function() {
   console.log("Node app is running at http://localhost:" + app.get("port"));
@@ -86,10 +87,10 @@ if (fs.existsSync(categoriesCountDevPath)) {
       if (error) throw error;
       console.log(categoriesCount.dev);
       Object.keys(categoriesCount.dev).forEach(category => {
-        const folderLocation = `dev/images/${category}`;
+        const folderLocation = `stimuli/${category}`;
         images.dev[category] = [];
         fs.readdirSync(folderLocation).forEach(file => {
-          images.dev[category].push(path.join("images", category, file));
+          images.dev[category].push(path.join("stimuli", category, file));
         });
       });
       writer = csvWriter({ sendHeaders: false });
@@ -99,29 +100,27 @@ if (fs.existsSync(categoriesCountDevPath)) {
 } else {
   // Create new csv of category counts if doesn't exist.
   // Get all categories from image folders.
-  fs.readdirSync("dev/images").forEach(folder => {
+  fs.readdirSync("stimuli").forEach(folder => {
     if (folder != ".DS_Store") {
       // Check for image folders that are non-empty
-      if (fs.readdirSync("dev/images/" + folder).length > 0) {
+      if (fs.readdirSync("stimuli/" + folder).length > 0) {
         categoriesCount.dev[folder] = 0;
         images.dev[folder] = [];
-        fs.readdirSync("dev/images/" + folder).forEach(file => {
+        fs.readdirSync("stimuli/" + folder).forEach(file => {
           if (file == "TestItems") {
-            fs.readdirSync("dev/images/" + folder + "/TestItems").forEach(
-              file => {
-                if (
-                  ![
-                    ".DS_Store",
-                    "Thumbs.db",
-                    "extra",
-                    "AMC5143AAS_COB_370.jpe"
-                  ].includes(file)
-                )
-                  images.dev[folder].push(
-                    "images/" + folder + "/TestItems/" + file
-                  );
-              }
-            );
+            fs.readdirSync("stimuli/" + folder + "/TestItems").forEach(file => {
+              if (
+                ![
+                  ".DS_Store",
+                  "Thumbs.db",
+                  "extra",
+                  "AMC5143AAS_COB_370.jpe"
+                ].includes(file)
+              )
+                images.dev[folder].push(
+                  "stimuli/" + folder + "/TestItems/" + file
+                );
+            });
           }
           if (
             ![
@@ -132,7 +131,7 @@ if (fs.existsSync(categoriesCountDevPath)) {
               "AMC5143AAS_COB_370.jpe"
             ].includes(file)
           )
-            images.dev[folder].push("images/" + folder + "/" + file);
+            images.dev[folder].push("stimuli/" + folder + "/" + file);
         });
       }
     }
@@ -154,10 +153,10 @@ if (fs.existsSync(categoriesCountProdPath)) {
       if (error) throw error;
       console.log(categoriesCount.prod);
       Object.keys(categoriesCount.prod).forEach(category => {
-        const folderLocation = `prod/images/${category}`;
+        const folderLocation = `stimuli/${category}`;
         images.prod[category] = [];
         fs.readdirSync(folderLocation).forEach(file => {
-          images.prod[category].push(path.join("images", category, file));
+          images.prod[category].push(path.join("stimuli", category, file));
         });
       });
       writer = csvWriter({ sendHeaders: false });
@@ -169,28 +168,26 @@ if (fs.existsSync(categoriesCountProdPath)) {
 } else {
   // Create new csv of category counts if doesn't exist.
   // Get all categories from image folders.
-  fs.readdirSync("prod/images").forEach(folder => {
+  fs.readdirSync("stimuli").forEach(folder => {
     if (folder != ".DS_Store") {
-      if (fs.readdirSync("prod/images/" + folder)) {
+      if (fs.readdirSync("stimuli/" + folder)) {
         categoriesCount.prod[folder] = 0;
         images.prod[folder] = [];
-        fs.readdirSync("prod/images/" + folder).forEach(file => {
+        fs.readdirSync("stimuli/" + folder).forEach(file => {
           if (file == "TestItems") {
-            fs.readdirSync("prod/images/" + folder + "/TestItems").forEach(
-              file => {
-                if (
-                  ![
-                    ".DS_Store",
-                    "Thumbs.db",
-                    "extra",
-                    "AMC5143AAS_COB_370.jpe"
-                  ].includes(file)
-                )
-                  images.prod[folder].push(
-                    "images/" + folder + "/TestItems/" + file
-                  );
-              }
-            );
+            fs.readdirSync("stimuli/" + folder + "/TestItems").forEach(file => {
+              if (
+                ![
+                  ".DS_Store",
+                  "Thumbs.db",
+                  "extra",
+                  "AMC5143AAS_COB_370.jpe"
+                ].includes(file)
+              )
+                images.prod[folder].push(
+                  "stimuli/" + folder + "/TestItems/" + file
+                );
+            });
           }
           if (
             ![
@@ -201,7 +198,7 @@ if (fs.existsSync(categoriesCountProdPath)) {
               "AMC5143AAS_COB_370.jpe"
             ].includes(file)
           )
-            images.prod[folder].push("images/" + folder + "/" + file);
+            images.prod[folder].push("stimuli/" + folder + "/" + file);
         });
       }
     }
