@@ -1,6 +1,6 @@
 import { runExperiment } from "./experiment.js";
 
-const PORT = 7111;
+const PORT = 7101;
 const FULLSCREEN = true;
 $(document).ready(function() {
   $(window).on("beforeunload", function() {
