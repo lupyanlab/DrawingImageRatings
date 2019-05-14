@@ -1,6 +1,6 @@
 import { runExperiment } from "./experiment.js";
 
-const PORT = 3306;
+const PORT = 7100;
 const FULLSCREEN = false;
 $(document).ready(function() {
   // This listens to the form on-submit action

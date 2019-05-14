@@ -14,7 +14,7 @@ let writer = csvWriter({ sendHeaders: false });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.set("port", process.env.PORT || 3306);
+app.set("port", process.env.PORT || 7100);
 
 // Add headers
 app.use(function(req, res, next) {
