@@ -41,7 +41,12 @@ $(document).ready(function() {
         for (let category of categories)
           for (let file of stimuli[category]) images.push(file);
 
-        jsPsych.pluginAPI.preloadImages(images, function() {});
+        jsPsych.pluginAPI.preloadImages(
+          images.map(
+            image => "http://" + document.domain + ":" + PORT + "/" + image
+          ),
+          function() {}
+        );
 
         // $("#loading").remove();
         runExperiment(

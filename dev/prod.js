@@ -50,7 +50,12 @@ $(document).ready(function() {
         FULLSCREEN,
         PORT
       );
-      jsPsych.pluginAPI.preloadImages(images, function() {});
+      jsPsych.pluginAPI.preloadImages(
+        images.map(
+          image => "http://" + document.domain + ":" + PORT + "/" + image
+        ),
+        function() {}
+      );
     }
   });
 });
