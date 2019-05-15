@@ -8,18 +8,18 @@
     "prod": "gulp prod"
   },
   "dependencies": {
-    "body-parser": "^1.17.2",
+    "body-parser": "^1.19.0",
     "csv-write-stream": "^2.0.0",
     "csvtojson": "^1.1.7",
-    "express": "^4.13.3",
+    "express": "^4.16.4",
     "fast-csv": "^2.4.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.11",
     "python-shell": "^0.4.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-html-replace": "^1.6.2",
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.19.0"
   },
   "engines": {
     "node": "4.0.0"
