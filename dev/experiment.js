@@ -147,7 +147,7 @@ export function runExperiment(
               {
                 subjCode,
                 category,
-                image: image.split("/").slice(-1)[0],
+                image: image,
                 rt: data.rt,
                 expTimer: data.time_elapsed / 1000
               }
