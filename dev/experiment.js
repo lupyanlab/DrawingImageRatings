@@ -63,9 +63,9 @@ export function runExperiment(
     key_forward: "space",
     key_backward: "backspace",
     pages: [
-      /*html*/ `<p class="lead">In this HIT, you will see various images of familiar objects. For each image, please rate how typical it is of its category.
-            For example, you may be shown a series of motorcycles and asked how typical each one is of motorcyles in general.
-            </p> <p class="lead">Use the  1-5 keys on the keyboard to respond. 1 means very typical. 5 means very atypical. Please try to use the entire scale, not just the 1/5 keys. If you rush through without attending to the images, we may deny payment.
+      /*html*/ `<p class="lead">In this HIT, you will see 87 drawings of a particular category one at a time. People have been asked to draw a quick sketch of a bird, dog, boat or train using their computer, you will be rating one of these categories.  For each drawing, your task is to do two things: First, rate how well drawn you think it is on a scale of 1-5. 1 means very badly drawn. 5 means very well drawn. Secondly rate how typical the drawing is of its category.
+            For example, if you have a drawing of a train, how typical is that train compared to trains in general.
+            </p> <p class="lead"> 1 means very typical. 5 means very atypical. Please try to use the entire scale, not just 1 or 5. If you rush through without attending to the images, we may deny payment.
             </p> ${continue_space}`
     ]
   };
@@ -206,10 +206,10 @@ export function runExperiment(
       let endmessage = `Thank you for participating! Your completion code is ${participantID}. Copy and paste this in 
         MTurk to get paid. 
         <p>The purpose of this HIT is to assess the extent to which different people agree what makes
-        a particular dog, cat, or car typical.
+        a particular dog, bird, boat or train typical.
         
         <p>
-        If you have any questions or comments, please email cschonberg@wisc.edu.`;
+        If you have any questions or comments, please email hroebuck@wisc.edu.`;
       jsPsych.endExperiment(endmessage);
     }
   };
