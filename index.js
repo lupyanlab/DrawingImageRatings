@@ -215,7 +215,7 @@ app.post("/trials", function(req, res) {
 
   let subjCode = req.body.subjCode;
   let numCategories = req.body.numCategories;
-  let numPics = req.body.numPics || 87;
+  let numPics = req.body.numPics || 88;
   let reset = req.body.reset;
   const dev = req.body.dev == true;
   const env = dev ? "dev" : "prod";

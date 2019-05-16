@@ -63,9 +63,9 @@ export function runExperiment(
     key_forward: "space",
     key_backward: "backspace",
     pages: [
-      /*html*/ `<p class="lead">In this HIT, you will see 87 drawings of a particular category one at a time. People have been asked to draw a quick sketch of a bird, dog, boat or train using their computer, you will be rating one of these categories.  For each drawing, your task is to do two things: First, rate how well drawn you think it is on a scale of 1-5. 1 means very badly drawn. 5 means very well drawn. Secondly rate how typical the drawing is of its category.
+      /*html*/ `<p class="lead">In this HIT, you will see about 88 drawings of a particular category one at a time. People have been asked to draw a quick sketch of a bird, dog, boat or train using their computer, you will be rating one of these categories.  For each drawing, your task is to do two things: First, rate how well drawn you think it is on a scale of 1-5. 1 means very badly drawn. 5 means very well drawn. Secondly rate how typical the drawing is of its category.
             For example, if you have a drawing of a train, how typical is that train compared to trains in general?
-             1 means very typical. 5 means very atypical. Please try to use the entire scale, not just 1 or 5. If you rush through without attending to the images, we may deny payment.
+             1 means very atypical. 5 means very typical. Please try to use the entire scale, not just 1 or 5. If you rush through without attending to the images, we may deny payment.
             </p> ${continue_space}`
     ]
   };
@@ -113,7 +113,7 @@ export function runExperiment(
           prompt: `How typical is this ${categoryNamesMap[category]} of ${
             categoryNamesMap[category]
           }s in general?`,
-          labels: ["1 (Very typical)", "2", "3", "4", "5 (Very atypical)"],
+          labels: ["1 (Very atypical)", "2", "3", "4", "5 (Very typical)"],
           required: true
         }
       ];
