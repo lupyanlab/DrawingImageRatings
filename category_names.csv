@@ -1,5 +1,11 @@
-directory,"name"
-bird,"bird"
-boat,"boat"
-dog,"dog"
-train,"train"
+directory,name
+appliance,appliance
+clothing,clothing
+dessert,dessert
+fruit,fruit
+furniture,furniture
+insect,insect
+instrument,instrument
+plant,plant
+reptile,reptile
+tool,tool
