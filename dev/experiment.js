@@ -66,6 +66,8 @@ export function runExperiment(
       /*html*/ `<p class="lead">In this HIT, you will see about 100 drawings of particular categories one at a time. People have been asked to draw a quick sketch of a household appliance, piece of clothing, dessert, piece of fruit, item of furniture, insect, musical instrument, plant, reptile or household tool using their computer. You will be rating drawings from FIVE of these categories.  For each drawing, your task is to do two things: First, rate how well drawn you think it is on a scale of 1-5. 1 means very badly drawn. 5 means very well drawn. Secondly rate how typical the drawing is of its category.
             For example, if you are rating drawings of transport and you have a drawing of a car, how typical is that drawing of a car compared to transport in general? A drawing of a submarine for the prompt transport would be quite atypical of transport in general.
              1 means very atypical. 5 means very typical. Please try to use the entire scale, not just 1 or 5. If you rush through without attending to the images, we may deny payment.
+             
+             Make sure you read which category you a rating for each drawing.
             </p> ${continue_space}`
     ]
   };
