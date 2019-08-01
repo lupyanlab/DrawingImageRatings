@@ -63,8 +63,8 @@ export function runExperiment(
     key_forward: "space",
     key_backward: "backspace",
     pages: [
-      /*html*/ `<p class="lead">In this HIT, you will see 102 drawings of a particular category one at a time. Other people have been asked to draw a quick sketch of a kitchen appliance, piece of furniture, a reptile or a dessert (the food). <p> You will be rating drawings from ONE of these categories.  For each drawing, your task is to do TWO things: First, rate how well drawn you think it is on a scale of 1-5. 1 means very badly drawn. 5 means very well drawn. Secondly rate how typical the drawing is of its category.
-            For example, if you are rating drawings of transport and you have a drawing of a bike, how typical is that drawing of a bike compared to transport in general? A drawing of a submarine for the prompt transport would be very atypical, but a sedan car very typical. The way someone has drawn a particular car may also look more or less typical. <p>
+      /*html*/ `<p class="lead"> In this HIT, you will see about 100 drawings that have been quickly sketched by other Turkers. All the drawings you see will come from one general category such as a 'reptile' or a 'dessert'. <p>  For each drawing, your task is to make TWO ratings: First, rate how well drawn you think it is on a scale of 1-5 (1 = very badly drawn; 5 = very well drawn). <p>  Second, rate how typical the drawing is of its category. 
+            For example, if you are rating drawings of fruit and you have a drawing of an orange, how typical is that drawing of an orange compared to fruit in general? A drawing of an apricot for the prompt fruit would be very atypical, but an apple might be very typical. A particular apple may also look more or less typical depending how it has been drawn. <p>
             Please try to use the entire scale, not just 1 or 5. 1 means very atypical. 5 means very typical. If you rush through without attending to the images, we may deny payment.
             </p> ${continue_space}`
     ]
